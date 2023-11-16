@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="20dp">
+
+    <RelativeLayout
+        android:id="@+id/rl_material"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+        <TextView
+            android:id="@+id/tv_material"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:text="焊接材料:"
+            android:textColor="#00f"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/et_material"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_material"
+            android:hint="请输入焊接材料"
+            android:textSize="20sp"
+            android:background="@android:color/transparent" />
+
+        <ImageButton
+            android:id="@+id/bt_material"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/down" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_diameter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+        <TextView
+            android:id="@+id/tv_diameter"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:text="焊丝直径:"
+            android:textColor="#00f"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/et_diameter"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_diameter"
+            android:hint="请输入焊丝直径"
+            android:textSize="20sp"
+            android:background="@android:color/transparent" />
+
+        <ImageButton
+            android:id="@+id/bt_diameter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/down" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_method"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+        <TextView
+            android:id="@+id/tv_method"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:text="焊接方法:"
+            android:textColor="#00f"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/et_method"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_method"
+            android:hint="请输入焊接方法"
+            android:textSize="20sp"
+            android:background="@android:color/transparent" />
+
+        <ImageButton
+            android:id="@+id/bt_method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/down" />
+    </RelativeLayout>
+
+    <Button android:id="@+id/btn_login"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="查询"
+        android:textSize="20sp"
+        android:textColor="@color/purple_500"
+        android:backgroundTint="@color/grey"
+        android:textStyle="bold"/>
+
+</LinearLayout>
