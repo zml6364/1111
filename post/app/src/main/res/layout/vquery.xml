@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Vquery"
+    tools:context=".Vquery.Vquery"
     android:layout_margin="10dp">
 
     <LinearLayout
@@ -13,23 +14,29 @@
         android:orientation="vertical">
 
         <ImageButton
+            android:id="@+id/btn_vback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:src="@drawable/back" />
 
         <EditText
-            android:id="@+id/et_user"
+            android:id="@+id/et_vquery"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_margin="20dp"
             android:background="@drawable/editext_selector"
             android:gravity="left"
-            android:hint="例：我的焊接材料是Steel，焊接厚度是1.2，焊接方法是GMAW，请告诉我焊接参数"
+            android:text="焊接厚度是0.6，焊接材料是Al-Si-5，焊接参数"
+            android:hint="例：焊接厚度是0.6，焊接材料是Al-Si-5，焊接参数
+            焊接材料是纯铝，焊接厚度是1，焊接方法是MIG，焊接参数
+            我的焊接材料是Al-Si-5,焊接厚度是1，焊接方法是MIG，请告诉我焊接参数"
             android:inputType="textMultiLine"
             android:padding="5dp"
             android:textColor="@color/black"
             android:textSize="20sp" />
+
+
 
         <ImageButton
             android:layout_width="wrap_content"

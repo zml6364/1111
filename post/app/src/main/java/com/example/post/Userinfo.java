@@ -7,17 +7,26 @@ import java.io.Serializable;
  */
 public class Userinfo implements Serializable {
 
+    //private String WireDiameter;
     private String ParamName;
     private String ParamValue;
 
-    public Userinfo(String pname, String pvalue) {
-
+    public Userinfo(String wdiameter, String pname, String pvalue) {
+        //this.WireDiameter = wdiameter;
         this.ParamName = pname;
         this.ParamValue = pvalue;
     }
 
     public Userinfo() {
     }
+
+    /*public String getWireDiameter() {
+        return WireDiameter;
+    }
+
+    public void setWireDiameter(String wireDiameter) {
+        WireDiameter = wireDiameter;
+    }*/
 
     public String getParamName() {
         return ParamName;

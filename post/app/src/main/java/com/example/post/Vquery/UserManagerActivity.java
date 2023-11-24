@@ -1,13 +1,23 @@
-package com.example.post;
+package com.example.post.Vquery;
 
-import static com.example.post.MainActivity.str;
+import static com.example.post.Vquery.Vquery.str;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.post.CommonUtils;
+import com.example.post.LvDataAdapter;
+import com.example.post.R;
+import com.example.post.Userinfo;
+import com.example.post.Weldinginfo;
+import com.example.post.queryUtil;
+
 import java.util.List;
 
 /**
@@ -18,7 +28,11 @@ public class UserManagerActivity extends AppCompatActivity implements View.OnCli
     private LvDataAdapter lvDataAdapter;   // 用户信息数据适配器
     private ListView lv_user;   // 用户列表组件
     private Handler mainHandler;   // 主线程
-    public static List<Userinfo> userinfoList;   // 用户数据集合
+    private List<Userinfo> userinfoList;   // 用户数据集合
+    private TextView tv_wireDiameter;
+    private String wireDiameter;
+    public static List<Weldinginfo> weldinginfoList;
+    public static int i, j, k, l;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,23 +43,25 @@ public class UserManagerActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void initView(){
-        // 返回图片按钮 ，添加图片按钮
         ImageView btn_back = findViewById(R.id.btn_back);
         ImageView btn_next = findViewById(R.id.btn_next);
-
         lv_user = findViewById(R.id.lv_user);
         mainHandler = new Handler(getMainLooper());
         btn_back.setOnClickListener(this);
         btn_next.setOnClickListener(this);
+        tv_wireDiameter = findViewById(R.id.tv_wireDiameter);
     }
 
     private void loadUserDb(){
         new Thread(new Runnable() {
             @Override
             public void run() {
-
-                userinfoList = queryUtil.parseJson(str);
-
+                userinfoList = null;
+                weldinginfoList = queryUtil.parseJson(str);
+                for (i=0; userinfoList == null && i<weldinginfoList.size(); i++) {
+                    wireDiameter = weldinginfoList.get(i).getWireDiameter();
+                    userinfoList = weldinginfoList.get(i).getWeldingList();
+                }
                 showLvData();
             }
         }).start();
@@ -60,6 +76,7 @@ public class UserManagerActivity extends AppCompatActivity implements View.OnCli
             lvDataAdapter.setweldingList(userinfoList);
             lvDataAdapter.notifyDataSetChanged();
         }
+        tv_wireDiameter.setText(wireDiameter);
     }
 
     @Override
@@ -67,7 +84,10 @@ public class UserManagerActivity extends AppCompatActivity implements View.OnCli
         if(v.getId() == R.id.btn_back)
             finish();
         else if (v.getId() == R.id.btn_next) {
-            next();
+            if(i == weldinginfoList.size())   //判断是否是最后一页
+            {
+                CommonUtils.showDlgMsg(UserManagerActivity.this, "最后一页");
+            } else { next();}
         }
     }
 

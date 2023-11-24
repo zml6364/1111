@@ -1,23 +1,33 @@
 package com.example.post;
 
+import android.content.ContentProviderOperation;
 import android.os.Environment;
 import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import okhttp3.FormBody;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class queryUtil {
+    //public static String session_id;
 
     /*单次查询*/
     public static void queryRequest(String query,String uri) throws JSONException, IOException {
@@ -58,20 +68,13 @@ public class queryUtil {
         }
         output = new File(filePath2);//输出流，解析得到的查询命令
 
-
-
         /*获取请求*/
         HttpRequest request=new HttpRequest(uri,"POST");//创建一个请求
         request.acceptJson();//设置header
         request.contentType("application/json");//设置contentType
         request.send(input).receive(output);//上传查询请求，获取响应并拷贝到本地文件
-
         Log.d("status","okay!!!");
-
     }
-
-    /*多次查询————待完善*/
-
 
     /*将json文件转为字符串*/
     public static String readJsonFile(String fileName) {
@@ -95,9 +98,8 @@ public class queryUtil {
         }
     }
 
-
+    //获取json字符串的response
     public static String getResponse(String jsonstr) {
-
         String response;
         //new Thread(() -> {
         try {
@@ -112,109 +114,85 @@ public class queryUtil {
         return response;
     }
 
-    /*读取json字符串中的嵌套数据, 并返回list
-     * */
-    public static List<Userinfo> parseJson(String jsonstr) {
+    //读取json字符串中的嵌套数据, 并返回list
+    public static List<Weldinginfo> parseJson(String jsonstr) {
 
-        List<Userinfo> list = new ArrayList<>();
-        Userinfo item = null;
-        //new Thread(() -> {
+        List<Weldinginfo> wlist = new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(jsonstr);
             JSONObject jsonObject2 = jsonObject.optJSONObject("response");
             JSONObject jsonObject3 = jsonObject2.optJSONObject("data");
-            JSONArray jsonArray = jsonObject3.optJSONArray("WireDiameter:0.8");
 
-            for (int i=0; i<jsonArray.length(); i++) {
-                JSONObject jsonObject0 = jsonArray.optJSONObject(i);
-                //通过迭代器获取这段json当中所有的key值
-                Iterator<String> keys = jsonObject0.keys();
-                //然后通过一个循环取出所有的key值
-                while (keys.hasNext()) {
-                    item = new Userinfo();
-                    String key = String.valueOf(keys.next());
-                    item.setParamName(key);
-                    //最后就可以通过刚刚得到的key值去解析后面的json了
-                    String value = jsonObject0.optString(key);
-                    item.setParamValue(value);
-                    list.add(item);
+            Iterator<String> keys2 = jsonObject3.keys();
+
+            while (keys2.hasNext()) {
+                String key2 = String.valueOf(keys2.next());
+                List<Userinfo> list = new ArrayList<>();
+                Userinfo item = null;
+                Weldinginfo witem = null;
+                witem = new Weldinginfo();
+
+                witem.setWireDiameter(key2);
+                JSONArray jsonArray = jsonObject3.optJSONArray(key2);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject0 = jsonArray.optJSONObject(i);
+                    //通过迭代器获取这段json当中所有的key值
+                    Iterator<String> keys = jsonObject0.keys();
+                    //然后通过一个循环取出所有的key值
+                    while (keys.hasNext()) {
+                        item = new Userinfo();
+                        String key = String.valueOf(keys.next());
+                        item.setParamName(key);
+                        //最后就可以通过刚刚得到的key值去解析后面的json了
+                        String value = jsonObject0.optString(key);
+                        item.setParamValue(value);
+                        list.add(item);
+                    }
                 }
+                witem.setWeldingList(list);
+                wlist.add(witem);
             }
-            //et_test.setText(response);
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
-        //}).start();
-        return list;
+        return wlist;
     }
 
-    public static List<Userinfo> parseJson2(String jsonstr) {
+/*--------------------------------分界线---------------------------------*/
 
-        List<Userinfo> list = new ArrayList<>();
-        Userinfo item = null;
-        //new Thread(() -> {
-        try {
-            JSONObject jsonObject = new JSONObject(jsonstr);
-            JSONObject jsonObject2 = jsonObject.optJSONObject("response");
-            JSONObject jsonObject3 = jsonObject2.optJSONObject("data");
-            JSONArray jsonArray2 = jsonObject3.optJSONArray("WireDiameter:1");
-
-            for (int i=0; i<jsonArray2.length(); i++) {
-                JSONObject jsonObject0 = jsonArray2.optJSONObject(i);
-                //通过迭代器获取这段json当中所有的key值
-                Iterator<String> keys = jsonObject0.keys();
-                //然后通过一个循环取出所有的key值
-                while (keys.hasNext()) {
-                    item = new Userinfo();
-                    String key = String.valueOf(keys.next());
-                    item.setParamName(key);
-                    //最后就可以通过刚刚得到的key值去解析后面的json了
-                    String value = jsonObject0.optString(key);
-                    item.setParamValue(value);
-                    list.add(item);
-                }
-            }
-            //et_test.setText(response);
-
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
+    /*多次查询————待完善*/
+    //获取session_id
+    public static void getsession(String uri) throws IOException {
+        File output=null;
+        /*创建存储响应数据的文件*/
+        String fileName2="session_id.json";
+        String filePath2 = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString()+ File.separatorChar+fileName2;
+        File responseFile=new File(filePath2);
+        //输出流，解析得到的查询命令
+        if (!responseFile.exists())
+        {
+            responseFile.createNewFile();
+            FileUtil.saveText(filePath2,"");
+        }else {
+            FileWriter fileWriter =new FileWriter(responseFile);
+            fileWriter.write("");//文件存在则清空文件
+            fileWriter.flush();
+            fileWriter.close();
         }
-        //}).start();
-        return list;
+        output = new File(filePath2);//输出流，解析得到的查询命令
+        /*获取请求*/
+        HttpRequest request=new HttpRequest(uri,"POST");//创建一个请求
+        request.acceptJson();//设置header
+        request.contentType("application/json");//设置contentType
+        request.receive(output);//上传查询请求，获取响应并拷贝到本地文件
+        Log.d("status","okay!!!");
     }
 
-    public static List<Userinfo> parseJson3(String jsonstr) {
-
-        List<Userinfo> list = new ArrayList<>();
-        Userinfo item = null;
-        //new Thread(() -> {
-        try {
-            JSONObject jsonObject = new JSONObject(jsonstr);
-            JSONObject jsonObject2 = jsonObject.optJSONObject("response");
-            JSONObject jsonObject3 = jsonObject2.optJSONObject("data");
-            JSONArray jsonArray = jsonObject3.optJSONArray("WireDiameter:1.2");
-
-            for (int i=0; i<jsonArray.length(); i++) {
-                JSONObject jsonObject0 = jsonArray.optJSONObject(i);
-                //通过迭代器获取这段json当中所有的key值
-                Iterator<String> keys = jsonObject0.keys();
-                //然后通过一个循环取出所有的key值
-                while (keys.hasNext()) {
-                    item = new Userinfo();
-                    String key = String.valueOf(keys.next());
-                    item.setParamName(key);
-                    //最后就可以通过刚刚得到的key值去解析后面的json了
-                    String value = jsonObject0.optString(key);
-                    item.setParamValue(value);
-                    list.add(item);
-                }
-            }
-            //et_test.setText(response);
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
-        //}).start();
-        return list;
+    public static String getid() throws IOException, JSONException {
+        getsession("http://202.38.247.12:8001/api/session/start");
+        String id = readJsonFile("/storage/emulated/0/Download/session_id.json");
+        JSONObject idobject = new JSONObject(id);
+        return idobject.optString("session_id");
     }
 
 }

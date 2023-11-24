@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="10dp"
-    tools:context=".UserManagerActivity">
+    android:layout_margin="15dp"
+    tools:context=".Vquery.UserManagerActivity">
     <!--用户管理界面-->
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,42 +14,47 @@
 
         <ImageView
             android:id="@+id/btn_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:src="@drawable/back" />
-
+        <TextView
+            android:id="@+id/tv_wireDiameter"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_toRightOf="@id/btn_back"
+            android:layout_toLeftOf="@id/btn_next"
+            android:gravity="center"
+            android:text="焊丝直径"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
         <ImageView
             android:layout_alignParentEnd="true"
             android:id="@+id/btn_next"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:src="@drawable/next" />
-
     </RelativeLayout>
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="2.5dp">
+        android:layout_marginTop="5dp">
         <TextView
             android:layout_width="0dp"
             android:layout_weight="8"
             android:layout_height="wrap_content"
             android:text="参数名称"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textColor="@color/purple_500"
             android:textStyle="bold"/>
-
         <TextView
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="wrap_content"
             android:text="参数值"
             android:gravity="center"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textColor="@color/purple_500"
             android:textStyle="bold"/>
     </LinearLayout>
