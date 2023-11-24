@@ -1,47 +1,47 @@
 package com.example.post.MulVquery;
 
-import static com.example.post.MulVquery.MulVquery.i;
-import static com.example.post.MulVquery.MulUserManagerActivity.j;
-import static com.example.post.MulVquery.MulVquery.weldinginfoList;
+import static com.example.post.MulVquery.MulWeldingDataActivity.i;
+import static com.example.post.MulVquery.MulWeldingDataActivity.j;
+import static com.example.post.MulVquery.MulWeldingDataActivity.weldingListinfo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.post.CommonUtils;
-import com.example.post.LvDataAdapter;
+import com.example.post.Util.CommonUtils;
+import com.example.post.Util.WeldingDataAdapter;
 import com.example.post.R;
-import com.example.post.Userinfo;
+import com.example.post.Util.WeldingDatainfo;
 import java.util.List;
 
 /**
  * 用户管理界面业务逻辑
  */
-public class MulUserManagerActivity2 extends AppCompatActivity implements View.OnClickListener {
+public class MulWeldingDataActivity2 extends AppCompatActivity implements View.OnClickListener {
 
-    private LvDataAdapter lvDataAdapter;   // 用户信息数据适配器
-    private ListView lv_user;   // 用户列表组件
+    private WeldingDataAdapter weldingDataAdapter;   
+    private ListView lv_data;   // 列表组件
     private Handler mainHandler;   // 主线程
-    private List<Userinfo> userinfoList2;   // 用户数据集合
+    private List<WeldingDatainfo> weldingDatainfo2;   
     private TextView tv_wireDiameter2;
     private String wireDiameter2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_manager);
+        setContentView(R.layout.welding_list);
         initView();
         loadUserDb();
     }
 
     private void initView(){
-        // 返回图片按钮 ，添加图片按钮
-        ImageView btn_back = findViewById(R.id.btn_back);
-        ImageView btn_next = findViewById(R.id.btn_next);
-        lv_user = findViewById(R.id.lv_user);
+
+        ImageButton btn_back = findViewById(R.id.btn_back);
+        ImageButton btn_next = findViewById(R.id.btn_next);
+        lv_data = findViewById(R.id.lv_data);
         mainHandler = new Handler(getMainLooper());
         btn_back.setOnClickListener(this);
         btn_next.setOnClickListener(this);
@@ -52,11 +52,11 @@ public class MulUserManagerActivity2 extends AppCompatActivity implements View.O
         new Thread(new Runnable() {
             @Override
             public void run() {
-                userinfoList2 = null;
+                weldingDatainfo2 = null;
 
-                for (j=i; userinfoList2 == null && j<weldinginfoList.size(); j++) {
-                    wireDiameter2 = weldinginfoList.get(j).getWireDiameter();
-                    userinfoList2 = weldinginfoList.get(j).getWeldingList();
+                for (j=i; weldingDatainfo2 == null && j< weldingListinfo.size(); j++) {
+                    wireDiameter2 = weldingListinfo.get(j).getWireDiameter();
+                    weldingDatainfo2 = weldingListinfo.get(j).getWeldingList();
                 }
 
                 showLvData();
@@ -66,12 +66,12 @@ public class MulUserManagerActivity2 extends AppCompatActivity implements View.O
 
     // 显示列表数据的方法
     private void showLvData() {
-        if (lvDataAdapter == null) {   // 首次加载时的操作
-            lvDataAdapter = new LvDataAdapter(this, userinfoList2);
-            lv_user.setAdapter(lvDataAdapter);
+        if (weldingDataAdapter == null) {   // 首次加载时的操作
+            weldingDataAdapter = new WeldingDataAdapter(this, weldingDatainfo2);
+            lv_data.setAdapter(weldingDataAdapter);
         } else {   // 更新数据时的操作*/
-            lvDataAdapter.setweldingList(userinfoList2);
-            lvDataAdapter.notifyDataSetChanged();
+            weldingDataAdapter.setweldingList(weldingDatainfo2);
+            weldingDataAdapter.notifyDataSetChanged();
         }
         tv_wireDiameter2.setText(wireDiameter2);
     }
@@ -81,8 +81,8 @@ public class MulUserManagerActivity2 extends AppCompatActivity implements View.O
         if(v.getId() == R.id.btn_back)
             finish();
         else if (v.getId() == R.id.btn_next) {
-            if(j == weldinginfoList.size())   //判断是否是最后一页
-                CommonUtils.showDlgMsg(MulUserManagerActivity2.this, "最后一页");
+            if(j == weldingListinfo.size())   //判断是否是最后一页
+                CommonUtils.showDlgMsg(MulWeldingDataActivity2.this, "最后一页");
             else next();
         }
     }
@@ -94,7 +94,7 @@ public class MulUserManagerActivity2 extends AppCompatActivity implements View.O
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(MulUserManagerActivity2.this, MulUserManagerActivity3.class);
+                        Intent intent = new Intent(MulWeldingDataActivity2.this, MulWeldingDataActivity3.class);
                         startActivity(intent);
                     }
                 });

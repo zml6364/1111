@@ -1,4 +1,4 @@
-package com.example.post;
+package com.example.post.Util;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,17 +6,17 @@ import java.util.List;
 /**
  * 数据实体类
  */
-public class Weldinginfo implements Serializable {
+public class WeldingListinfo implements Serializable {
 
     public String WireDiameter;
-    public List<Userinfo> WeldingList;
+    public List<WeldingDatainfo> WeldingList;
 
-    public Weldinginfo(String wdiameter, List<Userinfo> weldingList) {
+    public WeldingListinfo(String wdiameter, List<WeldingDatainfo> weldingList) {
         this.WireDiameter = wdiameter;
         this.WeldingList = weldingList;
     }
 
-    public Weldinginfo() {
+    public WeldingListinfo() {
     }
 
     public String getWireDiameter() {
@@ -26,11 +26,11 @@ public class Weldinginfo implements Serializable {
     public void setWireDiameter(String wdiameter) {
         WireDiameter = wdiameter;
     }
-    public List<Userinfo> getWeldingList() {
+    public List<WeldingDatainfo> getWeldingList() {
         return WeldingList;
     }
 
-    public void setWeldingList(List<Userinfo> weldingList) {
+    public void setWeldingList(List<WeldingDatainfo> weldingList) {
         WeldingList = weldingList;
     }
 }

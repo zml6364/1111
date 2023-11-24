@@ -1,4 +1,4 @@
-package com.example.post;
+package com.example.post.Util;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

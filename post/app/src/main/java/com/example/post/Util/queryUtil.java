@@ -1,30 +1,21 @@
-package com.example.post;
+package com.example.post.Util;
 
-import android.content.ContentProviderOperation;
 import android.os.Environment;
 import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import okhttp3.FormBody;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class queryUtil {
     //public static String session_id;
@@ -115,9 +106,9 @@ public class queryUtil {
     }
 
     //读取json字符串中的嵌套数据, 并返回list
-    public static List<Weldinginfo> parseJson(String jsonstr) {
+    public static List<WeldingListinfo> parseJson(String jsonstr) {
 
-        List<Weldinginfo> wlist = new ArrayList<>();
+        List<WeldingListinfo> wlist = new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(jsonstr);
             JSONObject jsonObject2 = jsonObject.optJSONObject("response");
@@ -127,10 +118,10 @@ public class queryUtil {
 
             while (keys2.hasNext()) {
                 String key2 = String.valueOf(keys2.next());
-                List<Userinfo> list = new ArrayList<>();
-                Userinfo item = null;
-                Weldinginfo witem = null;
-                witem = new Weldinginfo();
+                List<WeldingDatainfo> list = new ArrayList<>();
+                WeldingDatainfo item = null;
+                WeldingListinfo witem = null;
+                witem = new WeldingListinfo();
 
                 witem.setWireDiameter(key2);
                 JSONArray jsonArray = jsonObject3.optJSONArray(key2);
@@ -140,7 +131,7 @@ public class queryUtil {
                     Iterator<String> keys = jsonObject0.keys();
                     //然后通过一个循环取出所有的key值
                     while (keys.hasNext()) {
-                        item = new Userinfo();
+                        item = new WeldingDatainfo();
                         String key = String.valueOf(keys.next());
                         item.setParamName(key);
                         //最后就可以通过刚刚得到的key值去解析后面的json了

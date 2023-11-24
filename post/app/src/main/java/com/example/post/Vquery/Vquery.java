@@ -1,7 +1,7 @@
 package com.example.post.Vquery;
 
-import static com.example.post.queryUtil.getResponse;
-import static com.example.post.queryUtil.readJsonFile;
+import static com.example.post.Util.queryUtil.getResponse;
+import static com.example.post.Util.queryUtil.readJsonFile;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.post.R;
-import com.example.post.queryUtil;
+import com.example.post.Util.queryUtil;
 
 public class Vquery extends AppCompatActivity implements View.OnClickListener {
     private EditText et_vquery;

@@ -1,7 +1,7 @@
 package com.example.post.MulVquery;
 
-import static com.example.post.queryUtil.getResponse;
-import static com.example.post.queryUtil.getid;
+import static com.example.post.Util.queryUtil.getResponse;
+import static com.example.post.Util.queryUtil.getid;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,10 +13,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.post.R;
-import com.example.post.Userinfo;
-import com.example.post.Weldinginfo;
+
 import org.json.JSONObject;
-import java.util.List;
+
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -28,10 +27,7 @@ public class MulVquery extends AppCompatActivity implements View.OnClickListener
     private ImageButton btn_vback;
     private Handler mainHandler;   // 主线程
     private String mresponse = "";
-    public static List<Weldinginfo> weldinginfoList;
     public static String murl, Murl, Mvquery, Mresponse, id;
-    public static List<Userinfo> userinfoList;
-    public static int i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +117,7 @@ public class MulVquery extends AppCompatActivity implements View.OnClickListener
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(MulVquery.this, MulUserManagerActivity.class);
+                        Intent intent = new Intent(MulVquery.this, MulWeldingDataActivity.class);
                         startActivity(intent);
                     }
                 });

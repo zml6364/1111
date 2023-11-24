@@ -1,4 +1,4 @@
-package com.example.post;
+package com.example.post.Util;
 
 import static androidx.core.content.ContextCompat.startActivity;
 

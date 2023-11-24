@@ -12,11 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/btn_back"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/back" />
+            android:src="@drawable/back"
+            android:background="@android:color/transparent"/>
         <TextView
             android:id="@+id/tv_wireDiameter"
             android:layout_width="match_parent"
@@ -27,12 +28,13 @@
             android:text="焊丝直径"
             android:textSize="20sp"
             android:textStyle="bold"/>
-        <ImageView
+        <ImageButton
             android:layout_alignParentEnd="true"
             android:id="@+id/btn_next"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/next" />
+            android:src="@drawable/next"
+            android:background="@android:color/transparent"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -60,7 +62,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/lv_user"
+        android:id="@+id/lv_data"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

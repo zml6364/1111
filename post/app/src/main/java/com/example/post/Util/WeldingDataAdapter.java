@@ -1,4 +1,4 @@
-package com.example.post;
+package com.example.post.Util;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,21 +7,23 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.post.R;
+
 import java.util.List;
 
 /**
- * 自定义用户数据适配器类
+ * 自定义焊接数据适配器类
  */
-public class LvDataAdapter extends BaseAdapter {
+public class WeldingDataAdapter extends BaseAdapter {
     private Context context;    // 上下文信息
-    private List<Userinfo> weldingList;    // 用户信息数据集合
+    private List<WeldingDatainfo> weldingList;    // 焊接信息数据集合
 
-    public LvDataAdapter(Context context, List<Userinfo> weldingList) {
+    public WeldingDataAdapter(Context context, List<WeldingDatainfo> weldingList) {
         this.context = context;
         this.weldingList = weldingList;
     }
 
-    public void setweldingList(List<Userinfo> weldingList) {
+    public void setweldingList(List<WeldingDatainfo> weldingList) {
         this.weldingList = weldingList;
     }
 
@@ -44,7 +46,7 @@ public class LvDataAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if(convertView==null){
-            convertView = LayoutInflater.from(context).inflate(R.layout.user_list_item, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.welding_list_item, null);
             viewHolder = new ViewHolder();
 
             viewHolder.tv_pname = convertView.findViewById(R.id.tv_pname);
@@ -56,7 +58,7 @@ public class LvDataAdapter extends BaseAdapter {
         }
 
         // 这里进行数据填充
-        Userinfo item = weldingList.get(position);
+        WeldingDatainfo item = weldingList.get(position);
         viewHolder.tv_pname.setText(item.getParamName());
         viewHolder.tv_pvalue.setText(item.getParamValue());
 

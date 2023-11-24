@@ -1,32 +1,22 @@
-package com.example.post;
+package com.example.post.Util;
 
 import java.io.Serializable;
 
 /**
  * 数据实体类
  */
-public class Userinfo implements Serializable {
+public class WeldingDatainfo implements Serializable {
 
-    //private String WireDiameter;
     private String ParamName;
     private String ParamValue;
 
-    public Userinfo(String wdiameter, String pname, String pvalue) {
-        //this.WireDiameter = wdiameter;
+    public WeldingDatainfo(String pname, String pvalue) {
         this.ParamName = pname;
         this.ParamValue = pvalue;
     }
 
-    public Userinfo() {
+    public WeldingDatainfo() {
     }
-
-    /*public String getWireDiameter() {
-        return WireDiameter;
-    }
-
-    public void setWireDiameter(String wireDiameter) {
-        WireDiameter = wireDiameter;
-    }*/
 
     public String getParamName() {
         return ParamName;

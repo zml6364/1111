@@ -33,10 +33,11 @@
         <activity android:name=".Vquery.UserManagerActivity3" />
         <activity android:name=".Vquery.UserManagerActivity4" />
 
-        <activity android:name=".MulVquery.MulUserManagerActivity" />
-        <activity android:name=".MulVquery.MulUserManagerActivity2" />
-        <activity android:name=".MulVquery.MulUserManagerActivity3" />
-        <activity android:name=".MulVquery.MulUserManagerActivity4" />
+
+        <activity android:name=".MulVquery.MulWeldingDataActivity" />
+        <activity android:name=".MulVquery.MulWeldingDataActivity2" />
+        <activity android:name=".MulVquery.MulWeldingDataActivity3" />
+        <activity android:name=".MulVquery.MulWeldingDataActivity4" />
     </application>
 
 </manifest>
