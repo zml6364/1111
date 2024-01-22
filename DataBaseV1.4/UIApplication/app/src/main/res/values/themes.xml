@@ -1,0 +1,36 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.UIApplication" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+
+    <style name="Theme.UIApplication" parent="Base.Theme.UIApplication" />
+
+    <!-- 按键主题 -->
+    <style name="MainButtonStyle">
+        <!-- Customize your theme here. -->
+        <item name="android:layout_width">180sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawablePadding">15dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Theme.UIApplication.Fullscreen" parent="Theme.UIApplication">
+        <item name="android:actionBarStyle">@style/Widget.Theme.UIApplication.ActionBar.Fullscreen
+        </item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="ThemeOverlay.UIApplication.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style>
+
+</resources>

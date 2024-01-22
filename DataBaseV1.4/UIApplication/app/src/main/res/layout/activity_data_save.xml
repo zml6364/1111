@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".dataSaveActivity"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/file_dir_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="5sp">
+        <ImageView
+            android:id="@+id/bnt_clear_all_file"
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:src="@drawable/clear_file"
+            android:layout_height="wrap_content"></ImageView>
+        <ImageView
+            android:layout_width="0sp"
+            android:layout_weight="10"
+            android:src="@drawable/file_dir"
+            android:layout_height="wrap_content"></ImageView>
+        <ImageView
+            android:id="@+id/bnt_flush"
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/flush"></ImageView>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginBottom="2sp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="#000000">
+    </View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="5sp">
+        <TextView
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="清除">
+        </TextView>
+        <TextView
+            android:layout_width="0sp"
+            android:layout_weight="10"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="文件目录">
+        </TextView>
+        <TextView
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="刷新">
+        </TextView>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="2sp"
+        android:layout_marginBottom="2sp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="#000000">
+    </View>
+
+    <ListView
+        android:id="@+id/lv_file"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true" />
+
+</LinearLayout>
