@@ -9,7 +9,7 @@
     tools:context=".query0Activity">
 
     <LinearLayout
-        android:id="@+id/activity_query1"
+        android:id="@+id/activity_query0"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"

@@ -75,7 +75,7 @@ public class query1Activity extends AppCompatActivity implements View.OnClickLis
         });
 
         //在listview区域外也能滑动
-        LinearLayout layout = findViewById(R.id.activity_query2);
+        LinearLayout layout = findViewById(R.id.activity_query1);
         layout.setOnTouchListener((v, event) -> {
             gestureDetector.onTouchEvent(event);
             return false;
